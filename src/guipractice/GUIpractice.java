@@ -18,7 +18,7 @@ public class GUIpractice {
      */
     public static void main(String[] args) {
         JFrame window = new JFrame("windows 58");
-        window.getContentPane().add(new SherlockPanel());
+        window.getContentPane().add(new QuizEvent());
         window.setVisible(true);
         window.pack();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

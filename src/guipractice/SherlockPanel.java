@@ -68,18 +68,26 @@ public class SherlockPanel extends JPanel{
         driver();
     }
     
-    /**
-     * @return nothing
-     */
     public void driver() {
-        ;
+        showData();
+        changeTenant();
+        showData();
     }
     
     public void changeTenant() {
-        ;
+        ImageIcon john = new ImageIcon("test/nebula.jpg");
+        firstName.setText("John");
+        secondName.setText("Watson");
+        imageLabel.setIcon(john);
     }
     
     public void showData() {
-        ;
+        System.out.print(number.getText() + " ");
+        System.out.print(street.getText() + " ");
+        System.out.print(suburb.getText() + " ");
+        System.out.println(town.getText());
+        System.out.println("Firstname: " + firstName.getText());
+        System.out.println("Secondname: " + secondName.getText());
+        System.out.println("**************************************");
     }
 }
