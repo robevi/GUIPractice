@@ -65,5 +65,21 @@ public class SherlockPanel extends JPanel{
         add(panel2);
         
         setBackground(Color.blue);
+        driver();
+    }
+    
+    /**
+     * @return nothing
+     */
+    public void driver() {
+        ;
+    }
+    
+    public void changeTenant() {
+        ;
+    }
+    
+    public void showData() {
+        ;
     }
 }
