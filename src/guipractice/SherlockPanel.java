@@ -7,6 +7,7 @@ package guipractice;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
 
 /**
  *
@@ -20,29 +21,33 @@ public class SherlockPanel extends JPanel{
     private JTextField firstName;
     private JTextField secondName;
     private ImageIcon london = new ImageIcon("test/london.jpg"); 
+    private ImageIcon john = new ImageIcon("test/nebula.jpg");
     private JLabel imageLabel = new JLabel(london);
     
+    private JButton changeButton;
+    private JButton showButton;
+    private int tenantSelect = 0;
+    
     public SherlockPanel() {
+        EventListener listener = new EventListener();
+        
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
-        JLabel HeaderB = new JLabel("BUTTONS");
-        JLabel HeaderT = new JLabel("TENENT LISTING");
+        JLabel HeaderB = new JLabel("Change Tenant");
+        JLabel HeaderT = new JLabel("Show Tenant");
         number = new JTextField("221B", 5);
         street = new JTextField("Baker St", 10);
         suburb = new JTextField("Marylebone", 10);
         town = new JTextField("London", 10);
         firstName = new JTextField("Sherlock", 10);
         secondName = new JTextField("Holmes", 10);
-        JButton button1 = new JButton("fist");
-        JButton button2 = new JButton("second");
+        changeButton = new JButton("Change Tenant");
+        changeButton.addActionListener(listener);
+        showButton = new JButton("Show Tenant");
+        showButton.addActionListener(listener);
         
         HeaderB.setForeground(Color.green);
         HeaderB.setFont(new Font("Times New Roman", Font.ITALIC|Font.BOLD, 40));
-        button1.setForeground(Color.cyan);
-        button1.setFont(new Font("Monospaced", Font.PLAIN, 30));
-        button2.setBackground(Color.blue);
-        button2.setBorderPainted(false);
-        button2.setOpaque(true);
         
         
         panel1.setPreferredSize(new Dimension(110, 250));
@@ -51,8 +56,8 @@ public class SherlockPanel extends JPanel{
         panel2.setBackground(Color.yellow);
         
         panel1.add(HeaderB);
-        panel1.add(button1);
-        panel1.add(button2);
+        panel1.add(changeButton);
+        panel1.add(showButton);
         panel2.add(HeaderT);
         panel2.add(firstName);
         panel2.add(secondName);
@@ -65,20 +70,21 @@ public class SherlockPanel extends JPanel{
         add(panel2);
         
         setBackground(Color.blue);
-        driver();
-    }
-    
-    public void driver() {
-        showData();
-        changeTenant();
-        showData();
     }
     
     public void changeTenant() {
-        ImageIcon john = new ImageIcon("test/nebula.jpg");
-        firstName.setText("John");
-        secondName.setText("Watson");
-        imageLabel.setIcon(john);
+        if(tenantSelect == 0) {
+            firstName.setText("Sherlock");
+            secondName.setText("Holmes");
+            imageLabel.setIcon(london);
+            tenantSelect = 1;
+        }
+        else if(tenantSelect == 1) {
+            firstName.setText("John");
+            secondName.setText("Watson");
+            imageLabel.setIcon(john);
+            tenantSelect = 0;
+        }
     }
     
     public void showData() {
@@ -89,5 +95,16 @@ public class SherlockPanel extends JPanel{
         System.out.println("Firstname: " + firstName.getText());
         System.out.println("Secondname: " + secondName.getText());
         System.out.println("**************************************");
+    }
+    
+    private class EventListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() == changeButton) {
+                changeTenant();
+            }
+            if(e.getSource() == showButton) {
+                showData();
+            }
+        }
     }
 }
